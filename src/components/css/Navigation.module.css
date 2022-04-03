@@ -1,0 +1,61 @@
+.navPersonalizada {
+  box-shadow: 0px 6px 10px rgb(100, 100, 100);
+  background: var(--fondo-elementos);
+  border-radius: 0 0 20px 20px;
+  color: var(--banana-mania);
+  z-index: 500000;
+}
+.containerBGNavBar {
+  background-color: var(--mauve);
+}
+.optionsNavbar {
+  font-size: 1.1em;
+  transition: 0.2s;
+}
+.optionsNavbar {
+  color: var(--mauve) !important;
+  transition: 0.2s;
+}
+.optionsNavbar:hover {
+  color: #fff !important;
+  transition: 0.2s;
+}
+.containerNavBar > a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.containerNavBar > a:hover {
+  color: #fff;
+  transition: 0.2s;
+}
+.containerItemsNavbar {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+}
+.nombreDelNavbar {
+  font-size: 1.6em;
+  color: var(--mauve);
+  margin: 0;
+  padding: 0;
+  transition: 0.2s;
+}
+.optionAdmins {
+  margin-left: 70%;
+}
+.aOptionAdmin {
+  min-width: 65px;
+  white-space: nowrap;
+}
+.bg {
+  background-color: red;
+}
+@media (min-width: 992px) {
+  .lineaDivisora {
+    display: none;
+  }
+  .optionAdmins {
+    margin-left: initial;
+  }
+}

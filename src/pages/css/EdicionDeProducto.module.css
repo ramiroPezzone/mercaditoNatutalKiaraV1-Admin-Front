@@ -1,0 +1,47 @@
+.containerNewProduct {
+  background-color: var(--mauve);
+  min-height: 100vh;
+  position: relative;
+}
+.containerVolverAtras {
+  padding: 5px 10px;
+}
+.containerVolverAtras {
+  padding: 10px 30px;
+} 
+.containerVolverAtras a {
+  color: #000;
+}
+.editando,
+.subEditando   {
+  padding: 5px;
+}
+
+.itemForm input {
+  height: 40px;
+  width: 100%;
+}
+.itemForm textarea {
+  width: 100%;
+  resize: none;
+}
+.containerTitulos {
+  text-align: center;
+}
+.containerFormNewProd {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  flex-direction: column;
+  max-width: 750px;
+}
+.containerCantidadUnidad {
+  margin: 0 auto;
+  width: 100%;
+  gap: 10%;
+  display: flex;
+}
+.containerCantidadUnidad input,
+.containerCantidadUnidad label {
+  width: 100%;
+}
