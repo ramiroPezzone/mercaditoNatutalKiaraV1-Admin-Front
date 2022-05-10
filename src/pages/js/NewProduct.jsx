@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Formik, Form } from "formik";
 import { Link } from "react-router-dom";
 import styles from '../css/NewProduct.module.css'
@@ -10,6 +10,7 @@ import { LoginPage } from "./LoginPage";
 const URIs = require('../../URIs')
 
 export const NewProduct = () => {
+
 
     useEffect(() => {
         document.title = `Administración de productos`;
@@ -50,6 +51,7 @@ export const NewProduct = () => {
 
     const logSession = sessionStorage.getItem('sessionLog')
     const logLocal = localStorage.getItem('localLog')
+    const checkbox = useRef()
 
     if (logSession === false || logLocal === false) {
         <LoginPage />
@@ -72,12 +74,13 @@ export const NewProduct = () => {
             <h2 style={{ textAlign: 'center' }}>Formulario de nuevo producto</h2>
             <div className="containerForm">
                 <Formik
-                    initialValues={{ name: '', description: '', quantity: '', price: '', image: '', unity: '', categorys: inputCategory }}
+                    initialValues={{ name: '', description: '', quantity: '', oferta: false, price: '', image: '', unity: '', categorys: inputCategory }}
                     onSubmit={async (values, { resetForm }) => {
                         let data = new FormData()
                         data.append('name', values.name)
                         data.append('description', values.description)
                         data.append('quantity', values.quantity)
+                        data.append('oferta', values.oferta)
                         data.append('price', values.price)
                         data.append('image', values.image)
                         data.append('unity', values.unity)
@@ -92,8 +95,10 @@ export const NewProduct = () => {
                         } catch (error) {
                             console.log(error);
                         }
+                        console.log(values.oferta);
                         setProductoAgregado(true)
                         resetForm()
+                        checkbox.current.checked = false
                     }
                     }
                 >
@@ -169,6 +174,16 @@ export const NewProduct = () => {
                                     name="image"
                                     accept="image/*"
                                     onChange={e => { formProps.setFieldValue('image', e.target.files[0]) }}
+                                />
+                            </div>
+
+                            <div className={`${styles.containerCheckOferta}`}>
+                                <label htmlFor="oferta"><h5>Marcar como oferta</h5></label>
+                                <input
+                                    type="checkbox"
+                                    name='oferta'
+                                    ref={checkbox}
+                                    {...formProps.getFieldProps('oferta')}
                                 />
                             </div>
 

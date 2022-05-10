@@ -33,7 +33,7 @@
   display: flex;
 }
 .containerCantidadUnidad > .itemForm {
-width: 50%;
+  width: 50%;
 }
 .containerCantidadUnidad input,
 .containerCantidadUnidad label {
@@ -75,4 +75,25 @@ width: 50%;
   outline: none;
   color: #fff;
   transition: 0.3s;
+}
+.containerCheckOferta {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content:center;
+  margin: 15px auto;
+  gap: 10px;
+}
+.containerCheckOferta label {
+  text-align: center;
+  width: max-content;
+}
+.containerCheckOferta h5 {
+  margin: 0;
+  padding: 0;
+
+}
+.containerCheckOferta input {
+  width: 10%;
+  height: 20px;
 }
