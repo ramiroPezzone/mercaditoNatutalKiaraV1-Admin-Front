@@ -5,6 +5,7 @@ import styles from '../css/ProductosAdmins.module.css'
 import { CardProductoAdmin } from "../../components/js/CardProductoAdmin";
 import { FlexContainer } from "../../components/js/FlexContainer";
 import { Loading } from "../../components/js/Loading";
+import BtnTop from "../../components/js/BtnTop";
 const URI = require('../../URIs')
 
 export const ProductosAdmins = (props) => {
@@ -106,6 +107,7 @@ export const ProductosAdmins = (props) => {
           ))
         }
       </FlexContainer>
+      <BtnTop />
     </div>
   )
 }

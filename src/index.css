@@ -6,12 +6,13 @@
 :root {
   /* SCSS RGB */
   --fondo-elementos: rgb(141, 42, 255);
+  --fondo-elementos-secundario: rgb(97, 45, 156);
   --banana-mania: rgba(251, 235, 179, 1);
-  --banana-mania-faded: rgba(251, 235, 179, .85);
+  --banana-mania-faded: rgba(251, 235, 179, 0.85);
   --green-haze: rgba(9, 164, 91, 1);
   --mine-shaft: rgba(53, 52, 52, 1);
   --swamp-green: rgba(160, 183, 141, 1);
-  --swamp-green-faded: rgba(160, 183, 141, .7);
+  --swamp-green-faded: rgba(160, 183, 141, 0.7);
   --pablo: rgba(128, 120, 98, 1);
   --indian-khaki: rgba(188, 172, 141, 1);
   --clay-creek: rgba(140, 138, 91, 1);
@@ -23,7 +24,7 @@
   --burnt-siena: rgba(224, 118, 75, 1);
   --burnt-siena-2: rgb(182, 95, 60);
   --red: rgb(255, 0, 0);
-  --red-faded: rgb(255, 0, 0, .5);
+  --red-faded: rgb(255, 0, 0, 0.5);
 }
 body {
   margin: 0;
