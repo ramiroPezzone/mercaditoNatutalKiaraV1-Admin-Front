@@ -8,12 +8,12 @@
 }
 .containerVolverAtras {
   padding: 10px 30px;
-} 
+}
 .containerVolverAtras a {
   color: #000;
 }
 .editando,
-.subEditando   {
+.subEditando {
   padding: 5px;
 }
 
@@ -44,4 +44,24 @@
 .containerCantidadUnidad input,
 .containerCantidadUnidad label {
   width: 100%;
+}
+.containerCheckOferta {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin: 15px auto;
+  gap: 10px;
+}
+.containerCheckOferta label {
+  text-align: center;
+  width: max-content;
+}
+.containerCheckOferta h5 {
+  margin: 0;
+  padding: 0;
+}
+.containerCheckOferta input {
+  width: 10%;
+  height: 20px;
 }

@@ -1,0 +1,91 @@
+.containerProductosAdmin {
+    background-color: var(--mauve);
+    min-height: calc(100vh - 105px);
+  }
+  .tituloSection {
+    text-align: center;
+  }
+  .btnCerrarSesion {
+    text-decoration: underline;
+    color: var(--mine-shaft);
+    cursor: pointer;
+  }
+  .containerCerrarSesion {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 2vh;
+  }
+  .containerBtnAgregarNvoProd {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .containerBtns {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .signoMas {
+    width: 30px;
+    height: 30px;
+    background: url(../../assets/imgs/signoMasInactive.png) no-repeat center;
+    background-size: 100%;
+    transition: .2s;
+  }
+  .containerBtns a {
+    font-size: 1.1em;
+  }
+  .containerBtns button {
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin: 0 12px;
+  }
+  .btnsAdmins a {
+    text-decoration: none;
+  }
+  .btnNvoProd {
+    background-color: var(--mauve);
+    border: 1px solid var(--forest-green-web);
+    transition: 0.2s;
+  }
+  .btnNvoProd a {
+    color: var(--forest-green-web);
+    transition: 0.2s;
+  }
+  .btnNvoProd:hover {
+    background-color: var(--forest-green-web);
+    transition: 0.2s;
+  }
+  .btnNvoProd:hover > a {
+    color: #fff;
+    transition: 0.2s;
+  }
+  .btnNvoProd:hover .containerBtnAgregarNvoProd > .signoMas {
+    width: 30px;
+    height: 30px;
+    background: url(../../assets/imgs/signoMasActive.png) no-repeat center;
+    background-size: 100%;
+    transition: .2s;
+  }
+  
+  .containerCardsProductos {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin: 0 auto;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 35px;
+  }
+  
+  @media (min-width: 768px) {
+    .containerCardsProductos {
+      flex-direction: row;
+      align-items: stretch;
+      gap: 0;
+    }
+  }
+  

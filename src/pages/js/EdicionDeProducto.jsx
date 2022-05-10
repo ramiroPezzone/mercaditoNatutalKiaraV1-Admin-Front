@@ -31,6 +31,12 @@ export const EdicionDeProducto = () => {
   const handleInputChange = (e) => {
     setProducto({ ...producto, [e.target.name]: e.target.value })
   }
+  const handleCheckChange = (e) => {
+    console.log(e.target.checked);
+    setProducto({ ...producto, "oferta": e.target.checked })
+  }
+
+  console.log(producto);
 
   const enviarFormulario = async (e) => {
     e.preventDefault()
@@ -136,6 +142,17 @@ export const EdicionDeProducto = () => {
               autoComplete='off'
             />
           </div>
+
+          <div className={`${styles.containerCheckOferta}`}>
+            <label htmlFor="oferta"><h5>Marcar como oferta</h5></label>
+            <input
+              type="checkbox"
+              name='oferta'
+              onChange={handleCheckChange}
+              checked={producto.oferta === true ? true : false}
+            />
+          </div>
+
 
           <hr />
 

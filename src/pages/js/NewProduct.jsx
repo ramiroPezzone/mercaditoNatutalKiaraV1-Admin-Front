@@ -51,6 +51,7 @@ export const NewProduct = () => {
 
     const logSession = sessionStorage.getItem('sessionLog')
     const logLocal = localStorage.getItem('localLog')
+
     const checkbox = useRef()
 
     if (logSession === false || logLocal === false) {
