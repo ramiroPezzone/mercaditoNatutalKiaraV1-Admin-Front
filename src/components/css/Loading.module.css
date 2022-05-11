@@ -10,7 +10,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30%;
+  width: min-content;
+  padding: 0 60px;
   height: 50px;
   border-radius: 20px;
   background-image: linear-gradient(
@@ -27,6 +28,8 @@
 }
 
 .loading h3 {
+  margin: 0;
+  padding: 0;
   background: linear-gradient(
     90deg,
     #212529 0%,

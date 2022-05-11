@@ -1,0 +1,49 @@
+.containerGralCategorys {
+  background-color: var(--mauve);
+  min-height: 100vh;
+  position: relative;
+}
+.containerCardsCategorys {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 30px;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.cardCategory {
+  font-size: 1.3rem;
+  padding: 5px 10px;
+  width: 30%;
+  text-align: center;
+  border: 2px outset var(--fondo-elementos-secundario);
+  background-color: var(--fondo-elementos);
+  color: var(--mauve);
+  text-decoration: none;
+  transition: 0.3s;
+}
+.cardCategory:hover {
+  color: #fff;
+  transition: 0.3s;
+}
+.containerBtnEditarCategorys {
+  padding-top: 50px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+.btnEditarCategorys {
+  padding: 10px 50px;
+  color: var(--fondo-elementos);
+  font-size: 1.2rem;
+  text-decoration: none;
+  border: 2px outset var(--fondo-elementos);
+  
+}
+.btnEditarCategorys:hover {
+  background-color: var(--fondo-elementos);
+  color: var(--mauve);
+
+}

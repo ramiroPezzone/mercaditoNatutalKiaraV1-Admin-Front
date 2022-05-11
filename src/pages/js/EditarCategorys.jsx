@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Spinner } from "react-bootstrap";
 import axios from "axios";
 import URIs from "../../URIs";
 import styles from '../css/EditarCategorys.module.css'
+import { Loading } from '../../components/js/Loading'
 
 export const EditarCategorys = (props) => {
 
@@ -16,12 +16,15 @@ export const EditarCategorys = (props) => {
 
     const [categoryAdded, setCategoryAdded] = useState(false)
     const [categoryDeleted, setCategoryDeleted] = useState(false)
+    const [error, setError] = useState(false)
+    const [loaded, setLoaded] = useState(false)
 
     // Lógica para ver las categorías existentes
     useEffect(() => {
         (async () => {
             const categorysDB = await axios.get(URIs.categorys)
             setCategorys(categorysDB.data)
+            setLoaded(true)
         })()
     }, [categoryAdded, categoryDeleted])
     // 
@@ -39,14 +42,21 @@ export const EditarCategorys = (props) => {
     }
     const agregar = async (e) => {
         e.preventDefault()
+        console.log(newCategory.value);
+        if (newCategory.value.includes("/")) {
+            setError(true)
+            return
+        }
+        setError(false)
         await axios.post(`${URIs.categorys}`, {
-            value: newCategory.value,
-            label: newCategory.value
+            value: newCategory.value.trim(),
+            label: newCategory.value.trim()
         })
         setCategoryAdded(!categoryAdded)
         setNewCategory({ value: '', label: '' })
     }
     // 
+    console.log(error);
 
     // Lógica para eliminación de categoría
     const eliminarCategory = async (id) => {
@@ -55,39 +65,13 @@ export const EditarCategorys = (props) => {
     }
     // 
 
-    // Lógica para el cierre de sesión
-    const [sesionIniciada, setSesionIniciada] = useState(true)
-
-    const cerrarSesion = () => {
-        if (sessionStorage.getItem('sessionLog')) {
-            sessionStorage.removeItem('sessionLog')
-        }
-        if (localStorage.getItem('localLog')) {
-            localStorage.removeItem('localLog')
-        }
-        setSesionIniciada(false)
-    }
-
-    useEffect(() => {
-        if (sesionIniciada === false) {
-            props.avisoDeCierre()
-        }
-    }, [sesionIniciada, props])
-
-    // 
-
     return (
         <div className={styles.containerEditarCategorys}>
             <div className={styles.containerBtnsSuperiores}>
                 <div className={styles.containerVolverAtras}>
-                    <Link to='/nuevo-producto'>
-                        ⮪ Volver a Nuevo producto
+                    <Link to='/categorys'>
+                        ⮪ Volver a ver productos por categoría
                     </Link>
-                </div>
-                <div className={styles.containerCerrarSesion}>
-                    <div className={styles.btnCerrarSesion} onClick={cerrarSesion}>
-                        Cerrar sesión
-                    </div>
                 </div>
             </div>
 
@@ -115,44 +99,60 @@ export const EditarCategorys = (props) => {
                 </div>
                 <div className={`${styles.itemForm} ${styles.btnSubmit}`}>
                     <button type="submit" onClick={addCategory}>
-                        <span className={styles.textoBtn} title="agregar">+</span>
+                        <div className={styles.cruzAgregar} />
                     </button>
                 </div>
             </form>
+            <span
+                className={
+                    error === false
+                        ? styles.ok
+                        : styles.error
+                }
+            >
+                La categoría no puede incluir en su nombre barras inclinadas (" / ")
+            </span>
 
             <div className={styles.lineaDivisora} />
 
-            {
-                categorys.length === 0 && <Spinner variant="warning" />
-            }
 
             {/* Mapeo de categorías existentes */}
             <h3 className={styles.titleSectionEditarCategorys}>Listado de categorías</h3>
-            <div className={styles.listadoDeCategorys}>
-                {
-                    categorys.map(cat => (
-                        <div
-                            key={cat._id}
-                        >
-                            <div
-                                className={styles.category}
-                            >
-                                <div className={styles.nameCategory}>
-                                    <p>{cat.value}</p>
-                                </div>
-                                <div className={`${styles.itemForm} ${styles.btnSubmit}`}>
-                                    <button onClick={() => eliminarCategory(cat._id)}>
-                                        <span title="eliminar">❌</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div className={styles.lineaDivisora2} />
-                        </div>
-                    ))
-                }
-            </div>
-            {/*  */}
 
+            {
+                categorys.length === 0 && loaded === false && <Loading />
+            }
+
+            {
+                loaded !== false &&
+
+                <div className={styles.listadoDeCategorys}>
+                    {
+                        categorys.map(cat => (
+                            <div
+                                key={cat._id}
+                            >
+                                <div
+                                    className={styles.category}
+                                >
+                                    <div className={styles.nameCategory}>
+                                        <Link className={styles.cardCategory} key={cat._id} to={`/viewCategory/${cat.label}`}>
+                                            {cat.label}
+                                        </Link>
+                                    </div>
+                                    <div className={`${styles.itemForm} ${styles.btnSubmit}`}>
+                                        <button onClick={() => eliminarCategory(cat._id)}>
+                                            <span title="eliminar">❌</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className={styles.lineaDivisora2} />
+                            </div>
+                        ))
+                    }
+                </div>
+            }
+            {/*  */}
         </div>
     )
 }

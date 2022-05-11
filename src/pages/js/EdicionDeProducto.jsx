@@ -36,8 +36,6 @@ export const EdicionDeProducto = () => {
     setProducto({ ...producto, "oferta": e.target.checked })
   }
 
-  console.log(producto);
-
   const enviarFormulario = async (e) => {
     e.preventDefault()
     await axios.post(guardarEdicion, {
@@ -65,7 +63,7 @@ export const EdicionDeProducto = () => {
   return (
     <div className={styles.containerNewProduct}>
       <ProductoModificado
-        avisoDeProductoAgreagado={avisoDeProductoModificado}
+        avisoDeProductoAgregado={avisoDeProductoModificado}
         oculto={productoModificado === false
           ? false
           : true

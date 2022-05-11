@@ -2,11 +2,10 @@ import { useEffect, useState } from 'react'
 import { LoginPage } from './LoginPage'
 import { ProductosAdmins } from './ProductosAdmins'
 import { useParams } from "react-router-dom";
-import { EditarCategorys } from './EditarCategorys';
+import Categorys from './Categorys';
 import { HomePage } from './HomePage';
 import { Ofertas } from './Ofertas';
 import { NewProduct } from './NewProduct';
-import { EdicionDeProducto } from './EdicionDeProducto';
 
 export const AdminsPage = () => {
 
@@ -59,9 +58,9 @@ export const AdminsPage = () => {
         )
     }
 
-    if (logueado === true && params.ruta === 'editar-categorys') {
+    if (logueado === true && params.ruta === 'categorys') {
         return (
-            <EditarCategorys
+            <Categorys
                 avisoDeCierre={cierreIsTrue} />
         )
     }

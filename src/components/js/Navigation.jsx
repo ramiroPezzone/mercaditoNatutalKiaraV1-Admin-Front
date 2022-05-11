@@ -16,7 +16,7 @@ export const Navigation = () => {
                         <Nav className="me-auto">
                             <Nav.Link as={Link} to='/productos' className={styles.optionsNavbar}>Productos</Nav.Link>
                             <Nav.Link as={Link} to='/ofertas' className={styles.optionsNavbar}>Ofertas</Nav.Link>
-                            <Nav.Link as={Link} to='/editar-categorys' className={styles.optionsNavbar}>Categorías</Nav.Link>
+                            <Nav.Link as={Link} to='/categorys' className={styles.optionsNavbar}>Categorías</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

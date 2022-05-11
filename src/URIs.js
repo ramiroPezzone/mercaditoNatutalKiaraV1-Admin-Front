@@ -4,6 +4,7 @@ const URIs = {
   admins: `${URIRaiz}/admins`,
   productosAdmins: `${URIRaiz}/admins/productos`,
   categorys: `${URIRaiz}/admins/categorys`,
+  viewCategory: `${URIRaiz}/admins/viewCategory`,
   edicionProducto: `${URIRaiz}/admins/editar`,
   guardarEdicionProducto: `${URIRaiz}/admins/guardarEdit`,
   ofertas: `${URIRaiz}/usuarios/ofertas`,
