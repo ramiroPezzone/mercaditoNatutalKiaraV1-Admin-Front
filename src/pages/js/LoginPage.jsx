@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Form, Button } from 'react-bootstrap'
 import axios from "axios";
 import styles from '../css/LoginPage.module.css'
+import { Loading } from "../../components/js/Loading";
 const URI = require('../../URIs')
 
 export const LoginPage = (props) => {
@@ -12,6 +13,8 @@ export const LoginPage = (props) => {
         document.title = `Sección administración`;
     });
 
+    const [ready, setReady] = useState(false)
+
     // Datos para el logueo
     const [admin, setAdmin] = useState([]);
     const [pass, setPass] = useState([]);
@@ -20,6 +23,7 @@ export const LoginPage = (props) => {
         let isSubscribed = true;
         (async () => {
             const res = await axios.get(`${URIAdmins}`);
+            setReady(true)
             if (isSubscribed === true) {
                 setAdmin(res.data[0].nameAdmin);
                 setPass(res.data[0].pass);
@@ -107,79 +111,85 @@ export const LoginPage = (props) => {
         }
     }, [logOk]) // eslint-disable-line react-hooks/exhaustive-deps
 
-
     return (
         <div className={styles.containerFormLogin}>
-            <Form onSubmit={login}>
-                <Form.Group className="mb-3" controlId="formBasicText">
-                    <Form.Label>Nombre de usuario</Form.Label>
-                    <Form.Control
-                        type="text"
-                        autoComplete="username"
-                        placeholder="usuario"
-                        name="nameInput"
-                        value={usuarioLogin.nameInput}
-                        onChange={capturarDatos}
-                    />
-                </Form.Group>
+            {
+                ready === false
+                    ? <Loading />
+                    : <Form onSubmit={login}>
+                        <Form.Group className="mb-3" controlId="formBasicText">
+                            <Form.Label>Nombre de usuario</Form.Label>
+                            <Form.Control
+                                type="text"
+                                autoComplete="username"
+                                placeholder="usuario"
+                                name="nameInput"
+                                value={usuarioLogin.nameInput}
+                                onChange={capturarDatos}
+                            />
+                        </Form.Group>
 
-                <p className={
-                    classNoUsuario
-                        ? styles.usuarioOk
-                        : styles.revelarMensaje1
-                }>
-                    Debe ingresar un usuario
-                </p>
+                        <p className={
+                            classNoUsuario
+                                ? styles.usuarioOk
+                                : styles.revelarMensaje1
+                        }>
+                            Debe ingresar un usuario
+                        </p>
 
-                <p className={
-                    classUsuario
-                        ? styles.usuarioOk
-                        : styles.revelarMensaje2
-                }>
-                    Usuario incorrecto
-                </p>
+                        <p className={
+                            classUsuario
+                                ? styles.usuarioOk
+                                : styles.revelarMensaje2
+                        }>
+                            Usuario incorrecto
+                        </p>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                    <Form.Label>Contraseña</Form.Label>
-                    <Form.Control
-                        type="password"
-                        autoComplete="current-password"
-                        placeholder="contraseña"
-                        name='passInput'
-                        value={usuarioLogin.pass}
-                        onChange={capturarDatos}
-                    />
-                </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                            <Form.Label>Contraseña</Form.Label>
+                            <Form.Control
+                                type="password"
+                                autoComplete="current-password"
+                                placeholder="contraseña"
+                                name='passInput'
+                                value={usuarioLogin.pass}
+                                onChange={capturarDatos}
+                            />
+                        </Form.Group>
 
-                <p className={
-                    classNoPass
-                        ? styles.usuarioOk
-                        : styles.revelarMensaje1
-                }>
-                    Debe ingresar una contraseña
-                </p>
+                        <p className={
+                            classNoPass
+                                ? styles.usuarioOk
+                                : styles.revelarMensaje1
+                        }>
+                            Debe ingresar una contraseña
+                        </p>
 
-                <p className={
-                    classPass
-                        ? styles.passOk
-                        : styles.revelarMensaje2
-                }>
-                    Contraseña incorrecta
-                </p>
+                        <p className={
+                            classPass
+                                ? styles.passOk
+                                : styles.revelarMensaje2
+                        }>
+                            Contraseña incorrecta
+                        </p>
 
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check
-                        type="checkbox"
-                        label="Recordarme"
-                        value="recordarme"
-                        name="checkbox"
-                        onClick={checkbox}
-                    />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Aceptar
-                </Button>
-            </Form>
+                        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                            <Form.Check
+                                type="checkbox"
+                                label="Recordarme"
+                                value="recordarme"
+                                name="checkbox"
+                                onClick={checkbox}
+                            />
+                        </Form.Group>
+                        <Button
+                            variant="primary"
+                            type="submit"
+                        >
+                            Aceptar
+                        </Button>
+                    </Form>
+            }
         </div>
     )
 }

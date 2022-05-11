@@ -4,6 +4,7 @@
 }
 .tituloSection {
   text-align: center;
+  color: var(--fondo-elementos);
 }
 .btnCerrarSesion {
   text-decoration: underline;

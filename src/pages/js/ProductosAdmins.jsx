@@ -72,7 +72,7 @@ export const ProductosAdmins = (props) => {
         </div>
       </div>
 
-      <h3 className={styles.tituloSection}>Listado de productos</h3>
+      <h3 className={styles.tituloSection}>Listado general de productos</h3>
 
       <div className={styles.containerBtns}>
         <button variant="info" className={`${styles.btnsAdmins} ${styles.btnNvoProd}`}>
