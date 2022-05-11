@@ -4,6 +4,9 @@ import { ProductosAdmins } from './ProductosAdmins'
 import { useParams } from "react-router-dom";
 import { EditarCategorys } from './EditarCategorys';
 import { HomePage } from './HomePage';
+import { Ofertas } from './Ofertas';
+import { NewProduct } from './NewProduct';
+import { EdicionDeProducto } from './EdicionDeProducto';
 
 export const AdminsPage = () => {
 
@@ -49,9 +52,23 @@ export const AdminsPage = () => {
         )
     }
 
+    if (logueado === true && params.ruta === 'ofertas') {
+        return (
+            <Ofertas
+                avisoDeCierre={cierreIsTrue} />
+        )
+    }
+
     if (logueado === true && params.ruta === 'editar-categorys') {
         return (
             <EditarCategorys
+                avisoDeCierre={cierreIsTrue} />
+        )
+    }
+
+    if (logueado === true && params.ruta === 'nuevo-producto') {
+        return (
+            <NewProduct
                 avisoDeCierre={cierreIsTrue} />
         )
     }
