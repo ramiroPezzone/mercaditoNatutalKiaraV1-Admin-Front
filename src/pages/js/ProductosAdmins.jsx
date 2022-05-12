@@ -6,6 +6,7 @@ import { CardProductoAdmin } from "../../components/js/CardProductoAdmin";
 import { FlexContainer } from "../../components/js/FlexContainer";
 import { Loading } from "../../components/js/Loading";
 import BtnTop from "../../components/js/BtnTop";
+import SearchBar from "../../components/js/SearchBar";
 const URI = require('../../URIs')
 
 export const ProductosAdmins = (props) => {
@@ -54,6 +55,17 @@ export const ProductosAdmins = (props) => {
   }, [sesionIniciada, props])
   // 
 
+  // Search logic
+
+  const [search, setSearch] = useState("")
+
+  const searchParams = (e) => {
+    setSearch(e.target.value)
+  }
+  // 
+
+  console.log(productos);
+
   if (productos.length === 0 && cargaCompleta === false) {
     return (
       <div className={styles.containerProductosAdmin}>
@@ -73,6 +85,8 @@ export const ProductosAdmins = (props) => {
       </div>
 
       <h3 className={styles.tituloSection}>Listado general de productos</h3>
+
+      <SearchBar searchParams={searchParams} />
 
       <div className={styles.containerBtns}>
         <button variant="info" className={`${styles.btnsAdmins} ${styles.btnNvoProd}`}>
@@ -103,6 +117,8 @@ export const ProductosAdmins = (props) => {
               categorys={prod.categorys}
               img={prod.image}
               avisoDeEliminacion={eliminacionDeProducto}
+              oferta={prod.oferta}
+              search={search}
             />
           ))
         }

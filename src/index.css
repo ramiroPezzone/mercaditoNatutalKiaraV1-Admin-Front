@@ -5,6 +5,7 @@
 }
 :root {
   /* SCSS RGB */
+  --fade-outline: rgb(255, 2, 213);
   --fondo-elementos: rgb(141, 42, 255);
   --fondo-elementos-secundario: rgb(97, 45, 156);
   --banana-mania: rgba(251, 235, 179, 1);

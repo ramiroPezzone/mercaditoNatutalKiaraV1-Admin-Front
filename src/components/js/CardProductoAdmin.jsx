@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import { ConfirmacionDeEliminacion } from "./ConfirmacionDeEliminacion";
 import styles from '../css/CardProductoAdmin.module.css'
 import URI from '../../URIs'
+import ListonOferta from "./ListonOferta";
 
 export const CardProductoAdmin = (props) => {
 
@@ -24,8 +25,62 @@ export const CardProductoAdmin = (props) => {
         props.avisoDeEliminacion()
     }
 
+    // Variables de búsqueda
+    const [name, setName] = useState("")
+    const [search, setSearch] = useState("")
+    useEffect(() => {
+        props.search !== undefined && setSearch(props.search.toLowerCase().trim())
+        props.name !== undefined && setName(props.name.toLowerCase().trim())
+    }, [props.search, props.name])
+
+    const [searchSinAcentos, setSearchSinAcentos] = useState("")
+    const [nameSinAcentos, setNameSinAcentos] = useState("")
+
+    // Name sin acentos
+    useEffect(() => {
+        const reemplazarAcentosEnName = (cadena) => {
+            var chars = {
+                "á": "a", "é": "e", "í": "i", "ó": "o", "ú": "u",
+                "à": "a", "è": "e", "ì": "i", "ò": "o", "ù": "u", "ñ": "n",
+                "Á": "A", "É": "E", "Í": "I", "Ó": "O", "Ú": "U",
+                "À": "A", "È": "E", "Ì": "I", "Ò": "O", "Ù": "U", "Ñ": "N"
+            }
+            var expr = /[áàéèíìóòúùñ]/ig;
+            var res = cadena.replace(expr, function (e) { return chars[e] });
+            setNameSinAcentos(res)
+        }
+        reemplazarAcentosEnName(name)
+    }, [name])
+
+    // Search sin acentos
+    useEffect(() => {
+        const reemplazarAcentosEnSearch = (cadena) => {
+            var chars = {
+                "á": "a", "é": "e", "í": "i", "ó": "o", "ú": "u",
+                "à": "a", "è": "e", "ì": "i", "ò": "o", "ù": "u", "ñ": "n",
+                "Á": "A", "É": "E", "Í": "I", "Ó": "O", "Ú": "U",
+                "À": "A", "È": "E", "Ì": "I", "Ò": "O", "Ù": "U", "Ñ": "N"
+            }
+            var expr = /[áàéèíìóòúùñ]/ig;
+            var res = cadena.replace(expr, function (e) { return chars[e] });
+            setSearchSinAcentos(res)
+        }
+        reemplazarAcentosEnSearch(search);
+    }, [search])
+    // 
+
     return (
-        <Card style={{ width: '18rem' }} className={styles.containerGralCard}>
+        <Card
+            style={{ width: '18rem' }}
+            className={
+                nameSinAcentos.includes(searchSinAcentos)
+                    ? `${styles.generalContainer}`
+                    : `${styles.generalContainerHidden}`
+            }
+        >
+            <ListonOferta
+            oferta={props.oferta}
+            />
             <ConfirmacionDeEliminacion
                 oculto={confirmacionOculta}
                 id={props.id}

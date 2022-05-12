@@ -11,7 +11,7 @@ export const LoginPage = (props) => {
 
     useEffect(() => {
         document.title = `Sección administración`;
-    });
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const [ready, setReady] = useState(false)
 

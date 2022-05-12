@@ -92,18 +92,20 @@ export const Ofertas = (props) => {
 
         {
           productos.map((prod) => (
-            <CardProductoAdmin
-              key={prod._id}
-              id={prod._id}
-              name={prod.name}
-              description={prod.description}
-              price={prod.price}
-              unity={prod.unity}
-              quantity={prod.quantity}
-              categorys={prod.categorys}
-              img={prod.image}
-              avisoDeEliminacion={eliminacionDeProducto}
-            />
+            <>
+              <CardProductoAdmin
+                key={prod._id}
+                id={prod._id}
+                name={prod.name}
+                description={prod.description}
+                price={prod.price}
+                unity={prod.unity}
+                quantity={prod.quantity}
+                categorys={prod.categorys}
+                img={prod.image}
+                avisoDeEliminacion={eliminacionDeProducto}
+              />
+            </>
           ))
         }
       </FlexContainer>

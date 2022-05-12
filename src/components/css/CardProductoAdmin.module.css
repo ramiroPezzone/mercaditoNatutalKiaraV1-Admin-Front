@@ -1,5 +1,9 @@
-.containerGralCard {
+.generalContainer {
   position: relative;
+  display: initial;
+}
+.generalContainerHidden {
+  display: none !important;
 }
 .cardContainer {
   background-color: rgb(216, 216, 216);
