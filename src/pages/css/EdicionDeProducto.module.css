@@ -65,3 +65,18 @@
   width: 10%;
   height: 20px;
 }
+h2,
+.containerTitulos h4 {
+  color: var(--fondo-elementos);
+}
+.containerImg {
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+  width: 200px;
+  height: 200px;
+}
+.btnFileHidden {
+  height: 0;
+  overflow: hidden;
+}

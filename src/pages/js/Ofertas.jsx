@@ -67,9 +67,7 @@ export const Ofertas = (props) => {
   return (
     <div className={styles.containerProductosAdmin}>
       <div className={styles.containerCerrarSesion}>
-        <div className={styles.btnCerrarSesion} onClick={cerrarSesion}>
-          Cerrar sesión
-        </div>
+        <div className={styles.btnCerrarSesion} onClick={cerrarSesion} title="Cerrar sesión" />
       </div>
 
       <h3 className={styles.tituloSection}>Listado de productos EN OFERTA</h3>
@@ -92,7 +90,6 @@ export const Ofertas = (props) => {
 
         {
           productos.map((prod) => (
-            <>
               <CardProductoAdmin
                 key={prod._id}
                 id={prod._id}
@@ -105,7 +102,6 @@ export const Ofertas = (props) => {
                 img={prod.image}
                 avisoDeEliminacion={eliminacionDeProducto}
               />
-            </>
           ))
         }
       </FlexContainer>

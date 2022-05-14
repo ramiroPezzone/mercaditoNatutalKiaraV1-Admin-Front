@@ -77,9 +77,7 @@ export const ProductosAdmins = (props) => {
   return (
     <div className={styles.containerProductosAdmin}>
       <div className={styles.containerCerrarSesion}>
-        <div className={styles.btnCerrarSesion} onClick={cerrarSesion}>
-          Cerrar sesión
-        </div>
+        <div className={styles.btnCerrarSesion} onClick={cerrarSesion} title="Cerrar sesión"/>
       </div>
 
       <h3 className={styles.tituloSection}>Listado general de productos</h3>

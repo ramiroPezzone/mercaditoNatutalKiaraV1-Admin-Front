@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import styles from '../css/EdicionDeProducto.module.css'
-import ProductoModificado from "../../components/js/ProductoModificado";
+import Swal from 'sweetalert2'
+
 const URI = require('../../URIs')
 
 export const EdicionDeProducto = () => {
@@ -41,34 +42,18 @@ export const EdicionDeProducto = () => {
     await axios.post(guardarEdicion, {
       producto
     })
-    setProductoModificado(true)
+    Swal.fire({
+      title: 'Producto editado',
+      icon: 'success',
+      confirmButtonText: 'Aceptar',
+      timer: 3000,
+      timerProgressBar: true,
+      confirmButtonColor: "rgb(141, 42, 255);"
+    })
   }
-
-  // Modal de Producto Modificado
-  const [productoModificado, setProductoModificado] = useState(false)
-
-  const avisoDeProductoModificado = () => {
-    setProductoModificado(false)
-  }
-  useEffect(() => {
-    if (productoModificado === true) {
-      setTimeout(() => {
-        setProductoModificado(false)
-      }, 4000);
-    }
-  }, [productoModificado])
-
-  // 
 
   return (
     <div className={styles.containerNewProduct}>
-      <ProductoModificado
-        avisoDeProductoAgregado={avisoDeProductoModificado}
-        oculto={productoModificado === false
-          ? false
-          : true
-        }
-      />
       <div className={styles.containerVolverAtras}>
         <Link to='/productos'>
           Volver atrás

@@ -1,0 +1,23 @@
+.containerErrorMsg {
+  width: 100%;
+  font-weight: bold;
+  color: red;
+  font-size: 1.2rem;
+  animation: shake 300ms;
+}
+p {
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes shake {
+  25% {
+    transform: translateX(4px);
+  }
+  50% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}

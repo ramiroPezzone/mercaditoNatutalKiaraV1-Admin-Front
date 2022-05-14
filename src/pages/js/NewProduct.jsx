@@ -7,6 +7,7 @@ import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import axios from "axios";
 import Swal from 'sweetalert2'
+import ErrorMessage from "../../components/js/ErrorMessage";
 
 
 const URIs = require('../../URIs')
@@ -33,7 +34,9 @@ export const NewProduct = () => {
 
     const animarComponentes = makeAnimated()
 
-    let [inputCategory, setInputCategory] = useState()
+    const [inputCategorysError, setInputCategorysError] = useState(false)
+    const [inputNameError, setInputNameError] = useState(false)
+    let [inputCategory, setInputCategory] = useState([])
     const handleCategoryChange = (e) => {
         let valoresSeleccionados = JSON.stringify(e)
         setInputCategory(valoresSeleccionados)
@@ -69,6 +72,21 @@ export const NewProduct = () => {
                         data.append('image', values.image)
                         data.append('unity', values.unity)
                         data.append('categorys', inputCategory)
+
+                        if (inputCategory.length === 0) {
+                            setInputCategorysError(true)
+                            return
+                        } else {
+                            setInputCategorysError(false)
+                        };
+
+                        if (values.name === "") {
+                            setInputNameError(true)
+                            return
+                        } else {
+                            setInputNameError(false)
+                        };
+
                         try {
                             await fetch(`${URIAgregarProd}`, {
                                 method: 'post',
@@ -107,6 +125,12 @@ export const NewProduct = () => {
                             <Link to='/editar-categorys' className={styles.btnEditarCategorys}>
                                 Editar categorías
                             </Link>
+                            {
+                                inputCategorysError &&
+                                <ErrorMessage
+                                    msg="Selecciona al menos una categoría"
+                                />
+                            }
                             <hr />
                             <div className={styles.itemForm}>
                                 <label htmlFor="name">Nombre</label>
@@ -115,6 +139,13 @@ export const NewProduct = () => {
                                     name='name'
                                     {...formProps.getFieldProps('name')}
                                 />
+                                {
+                                    inputNameError &&
+                                    <ErrorMessage
+                                        msg="No olvides colocarle nombre"
+                                    />
+                                }
+
                             </div>
 
                             <div className={styles.itemForm}>
