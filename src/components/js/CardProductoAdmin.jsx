@@ -1,28 +1,44 @@
 import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import { Link } from 'react-router-dom';
-import { ConfirmacionDeEliminacion } from "./ConfirmacionDeEliminacion";
+import Swal from 'sweetalert2'
 import styles from '../css/CardProductoAdmin.module.css'
 import URI from '../../URIs'
 import ListonOferta from "./ListonOferta";
+
 
 export const CardProductoAdmin = (props) => {
 
     const URIAdmins = URI.productosAdmins
 
-    const [confirmacionOculta, setConfirmacionOculta] = useState(true)
-
-    const eliminarProducto = () => {
-        setConfirmacionOculta(false)
-    }
-
-    const cancelarEliminacion = () => {
-        setConfirmacionOculta(true)
-    }
-
     const confirmacionEliminacion = async (id) => {
         await fetch(`${URIAdmins}/${id}`)
         props.avisoDeEliminacion()
+    }
+
+    const eliminarProducto = () => {
+        Swal.fire({
+            text: 'Estas seguro de que deseas eliminar este producto?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: "rgb(141, 42, 255);"
+        })
+            .then(res => {
+                if (res.isDismissed) {
+                    return;
+                } else {
+                    confirmacionEliminacion(props.id)
+                    Swal.fire({
+                        text: 'Producto eliminado',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        confirmButtonColor: "rgb(141, 42, 255);"
+                    })
+                }
+            })
     }
 
     // Variables de búsqueda
@@ -79,15 +95,11 @@ export const CardProductoAdmin = (props) => {
             }
         >
             <ListonOferta
-            oferta={props.oferta}
+                oferta={props.oferta}
             />
-            <ConfirmacionDeEliminacion
-                oculto={confirmacionOculta}
-                id={props.id}
-                cancelarEliminacion={cancelarEliminacion}
-                confirmacionEliminacion={confirmacionEliminacion}
-            />
-            <Card.Img variant="top" src={props.img} />
+
+            <div className={styles.containerImg} style={{ backgroundImage: `url(${props.img})` }} />
+
             <Card.Body className={styles.cardContainer}>
                 <div className={styles.flexItem}>
                     <Card.Title>{props.name}</Card.Title>

@@ -1,13 +1,16 @@
 import { useEffect, useState, useRef } from "react";
 import { Formik, Form } from "formik";
 import { Link } from "react-router-dom";
+import { LoginPage } from "./LoginPage";
 import styles from '../css/NewProduct.module.css'
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import axios from "axios";
-import ProductoAgregado from "../../components/js/ProductoAgregado";
-import { LoginPage } from "./LoginPage";
+import Swal from 'sweetalert2'
+
+
 const URIs = require('../../URIs')
+
 
 export const NewProduct = () => {
 
@@ -36,19 +39,6 @@ export const NewProduct = () => {
         setInputCategory(valoresSeleccionados)
     }
 
-    const [productoAgregado, setProductoAgregado] = useState(false)
-
-    const avisoDeProductoAgregado = () => {
-        setProductoAgregado(false)
-    }
-    useEffect(() => {
-        if (productoAgregado === true) {
-            setTimeout(() => {
-                setProductoAgregado(false)
-            }, 4000);
-        }
-    }, [productoAgregado])
-
     const logSession = sessionStorage.getItem('sessionLog')
     const logLocal = localStorage.getItem('localLog')
 
@@ -60,13 +50,6 @@ export const NewProduct = () => {
 
     return (
         <div className={styles.containerNewProduct}>
-            <ProductoAgregado
-                avisoDeProductoAgreagado={avisoDeProductoAgregado}
-                oculto={productoAgregado === false
-                    ? false
-                    : true
-                }
-            />
             <div className={styles.containerVolverAtras}>
                 <Link to='/productos'>
                     ⮪ Volver al listado de productos
@@ -92,12 +75,17 @@ export const NewProduct = () => {
                                 headers: new Headers({ Accept: 'application/json' }),
                                 body: data
                             });
-
                         } catch (error) {
                             console.log(error);
                         }
-                        console.log(values.oferta);
-                        setProductoAgregado(true)
+                        Swal.fire({
+                            title: 'Producto agregado satisfactoriamente',
+                            icon: 'success',
+                            confirmButtonText: 'Aceptar',
+                            timer: 3000,
+                            timerProgressBar: true,
+                            confirmButtonColor: "rgb(141, 42, 255);"
+                        })
                         resetForm()
                         checkbox.current.checked = false
                     }

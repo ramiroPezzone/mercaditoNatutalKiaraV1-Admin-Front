@@ -11,6 +11,16 @@
   flex-direction: column;
   justify-content: space-between;
 }
+.containerImg {
+  cursor: pointer;
+  width: 100%;
+  height: 158px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  transition: all 0.3s;
+
+}
 .unity {
   font-style: italic;
 }

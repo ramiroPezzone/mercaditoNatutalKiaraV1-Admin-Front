@@ -64,8 +64,6 @@ export const ProductosAdmins = (props) => {
   }
   // 
 
-  console.log(productos);
-
   if (productos.length === 0 && cargaCompleta === false) {
     return (
       <div className={styles.containerProductosAdmin}>
